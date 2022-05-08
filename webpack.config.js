@@ -7,11 +7,6 @@ module.exports = {
   devServer: {
     port: 3003,
   },
-  output: {
-    filename: "[name].[contenthash].js",
-    publicPath: "/",
-    assetModuleFilename: "images/[hash][ext][query]",
-  },
   module: {
     rules: [
       {
@@ -43,9 +38,8 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "PORTFOLIO",
       filename: "remoteEntry.js",
-      exposes: {},
-      remotes: {
-        SHELL: "SHELL@http://localhost:3001/remoteEntry.js",
+      exposes: {
+        "./App": "./src/App",
       },
       shared: [
         {
